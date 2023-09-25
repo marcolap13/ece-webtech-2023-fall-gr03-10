@@ -10,9 +10,10 @@ module.exports = {
     res.writeHead(200, { "Content-Type": "text/plain" });
 
     if (path === "/hello" && "name" in params) {
-      res.write("Hello " + params["name"]);
+      if (params["name"] == "Marco") res.write("I am Marco et I am a MAN");
+      else res.write("Hellooo " + params["name"]);
     } else {
-      res.write("Hello anonymous");
+      res.write("ERROR 404");
     }
 
     res.end();
