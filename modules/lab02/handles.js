@@ -12,9 +12,15 @@ module.exports = {
     if (path === "/hello" && "name" in params) {
       if (params["name"] == "Marco") res.write("I am Marco et I am a MAN");
       else res.write("Hellooo " + params["name"]);
-    } else {
-      res.write("ERROR 404");
-    }
+    } else if (path === "/about") {
+      try {
+        const content = require("./content/about.json");
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(content, null, 2));
+      } catch {
+        res.write("Error: File About can not be found");
+      }
+    } else res.write("ERROR 404");
 
     res.end();
   },
