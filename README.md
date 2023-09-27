@@ -1,6 +1,6 @@
 # ece-webtech-2023-fall-gr03-10
 
-## My Branche
+## My Branch
 
-This is **LA Marco**'s branch.
+This is main's branch.
 the labs can be found in the modules folder
