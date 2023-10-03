@@ -6,6 +6,13 @@ A Node.js starter project to help you create a simple application with various f
 
 Learn Express to build web API.
 
+- GET /articles - list all articles
+- POST /articles - add a new article
+- GET /articles/:articleId - get an article by ID
+- GET /articles/:articleId/comments - get all comments of the article with articleId
+- POST /articles/:articleId/comments - add a new comment to a specific article with articleId
+- GET /articles/:articleId/comments/:commentId - get a comment with commentId of the article with articleId
+
 ## Objectives
 
 This project aims to guide you through the following steps:
