@@ -2,6 +2,10 @@
 
 A Node.js starter project to help you create a simple application with various features.
 
+# LAB03
+
+Learn Express to build web API.
+
 ## Objectives
 
 This project aims to guide you through the following steps:
