@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import Header from "../../header";
-import Footer from '../../footer'; 
-import { useRouter } from 'next/router';
+import React, { useState } from "react"
+import Header from "../../header"
+import Footer from '../../footer'
+import { useRouter } from 'next/router'
 
 export default function Articles() {
   const [articleId, setArticleId] = useState('');
@@ -11,13 +11,13 @@ export default function Articles() {
     textAlign: "center",
     marginTop: "50px",
     fontFamily: "Arial, sans-serif",
-  };
+  }
 
   const headingStyle = {
     fontSize: "2em",
     marginBottom: "20px",
     color: "#333",
-  };
+  }
 
   const handleInputChange = (e) => {
     setArticleId(e.target.value);

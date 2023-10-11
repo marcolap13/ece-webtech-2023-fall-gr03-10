@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const Footer = () => {
   const footerStyle = {
@@ -9,7 +9,7 @@ const Footer = () => {
     bottom: "0",
     left: "0",
     width: "100%"
-  };
+  }
 
   return (
     <footer style={footerStyle}>

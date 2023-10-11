@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 export default function Index() {
 
@@ -6,29 +6,29 @@ export default function Index() {
     textAlign: "center",
     marginTop: "50px",
     fontFamily: "Arial, sans-serif",
-  };
+  }
 
   const headingStyle = {
     fontSize: "2em",
     marginBottom: "20px",
     color: "#333",
-  };
+  }
 
   const redirectToAccueil = () => {
     window.location.href = "/";
-  };
+  }
 
   const redirectToArticles = () => {
     window.location.href = "/articles";
-  };
+  }
 
   const redirectToContact = () => {
     window.location.href = "/contacts";
-  };
+  }
 
   const redirectToAbout = () => {
     window.location.href = "/about";
-  };
+  }
 
   return (
     <header>
