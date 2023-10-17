@@ -6,13 +6,28 @@ const articledb = [
   },
   {
     id: 2,
-    title: "man",
+    title: "mannequin",
     content: "o|-<",
   },
   {
     id: 3,
     title: "seb",
     content: "é_è",
+  },
+  {
+    id: 4,
+    title: "chapeau",
+    content: "^",
+  },
+  {
+    id: 5,
+    title: "crayon",
+    content: "|",
+  },
+  {
+    id: 7,
+    title: "Lettre E",
+    content: "E",
   },
 ];
 
