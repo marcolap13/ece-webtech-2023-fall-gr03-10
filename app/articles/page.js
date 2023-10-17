@@ -1,53 +1,24 @@
 import React from "react";
-import Header from "../components/header";
-import { useRouter } from "next/router";
+import articledb from "./articledb";
+
+const ArticleCard = ({ title, content }) => {
+  return (
+    <div className="border p-4 mb-4">
+      <h2 className="text-xl font-bold mb-2">{title}</h2>
+      <p>{content}</p>
+    </div>
+  );
+};
 
 const Articles = () => {
-  const [articleId, setArticleId] = useState("");
-  const router = useRouter();
-
-  const containerStyle = {
-    textAlign: "center",
-    marginTop: "50px",
-    fontFamily: "Arial, sans-serif",
-  };
-
-  const headingStyle = {
-    fontSize: "2em",
-    marginBottom: "20px",
-    color: "#333",
-  };
-
-  const handleInputChange = (e) => {
-    setArticleId(e.target.value);
-  };
-
-  const handleGoButtonClick = () => {
-    router.push(`/articles/${articleId}`);
-  };
-
   return (
     <div className="text-center mt-12 font-sans">
-      <Header />
-      <h1 className="text-3xl mb-8" style={headingStyle}>
-        Les Articles
-      </h1>
-      <div className="mb-4">
-        <input
-          type="text"
-          value={articleId}
-          onChange={handleInputChange}
-          placeholder="Entrez le numéro de l'article"
-          className="border p-2 rounded-l"
-        />
-        <button
-          onClick={handleGoButtonClick}
-          className="bg-blue-500 text-white px-4 py-2 rounded-r"
-        >
-          Aller
-        </button>
+      <h1 className="text-3xl mb-8">Les Articles</h1>
+      <div className="container mx-auto max-w-2xl">
+        {articledb.map((article) => (
+          <ArticleCard key={article.id} title={article.title} content={article.content} />
+        ))}
       </div>
-      <Footer />
     </div>
   );
 };
