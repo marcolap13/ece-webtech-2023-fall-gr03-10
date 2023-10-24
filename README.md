@@ -21,6 +21,15 @@ This main's repository contains supporting materials and labs from **GRP03-10** 
 
 Use the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification with clean separation of code changes.
 
+## Installation
+
+1. Clone this repository to your local machine:
+
+```bash
+$ git clone https://github.com/marcolap13/ece-webtech-2023-fall-gr03-10
+$ cd your-project
+```
+
 ## Authors
 
 - Steeve HUANG
