@@ -1,4 +1,4 @@
-# ece-webtech-2023-fall-gr03-10
+# ece-webtech-2023-fall-grp03-10
 
 This main's repository contains supporting materials and labs from **GRP03-10** for Web Technologies course at ECE.
 
