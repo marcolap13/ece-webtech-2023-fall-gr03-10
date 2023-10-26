@@ -1,6 +1,5 @@
 import React from "react"
 import Link from "next/link"
-import "../styles/global.css"
 
 export default function Index() {
   return (
