@@ -3,7 +3,10 @@ import Layout from '../components/Layout.js'
 
 export default function Page() {
   return (
-    <Layout>
+    <Layout
+    title="Main"
+    description="This is our main page"
+    >
     <div className="bg-gray-200 min-h-screen font-sans">
     <div className="max-w-6xl mx-auto py-12 px-6">
 

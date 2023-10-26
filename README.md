@@ -39,5 +39,4 @@ $ cd your-project
 
 - Rayan ZOUCH
 =======
-test
 >>>>>>> parent of bb5ba35 (Update README.md)
