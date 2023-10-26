@@ -1,8 +1,17 @@
-import React from "react"
-import Link from "next/link"
-import "../styles/global.css"
+import React, { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Index() {
+  const [searchText, setSearchText] = useState("");
+  const router = useRouter();
+
+  const handleSearch = () => {
+    if (searchText.trim() !== "") {
+      router.push(`/articles/${searchText}`);
+    }
+  };
+
   return (
     <div className="bg-yellow p-4 shadow-md">
       <div className="container mx-auto flex items-center justify-between">
@@ -13,8 +22,13 @@ export default function Index() {
               type="text"
               placeholder="Article"
               className="border p-2 rounded-l w-64"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
             />
-            <button className="bg-white-500 p-2 rounded-r absolute right-0 top-0">
+            <button
+              className="bg-white-500 p-2 rounded-r absolute right-0 top-0"
+              onClick={handleSearch}
+            >
               🔍
             </button>
           </div>
