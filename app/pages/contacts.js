@@ -17,28 +17,28 @@ export default function Page() {
             <img
               src="/facebook.png" 
               alt="Facebook"
-              className="w-12 h-9 mx-2 cursor-pointer"
+              className="w-12 h-9 mx-2 my-1 cursor-pointer"
             />
           </a>
           <a href="#">
             <img
               src="/linkdin.png" 
               alt="LinkedIn"
-              className="w-8 h-8 mx-2 cursor-pointer"
+              className="w-8 h-8 mx-2 my-2 cursor-pointer"
             />
           </a>
           <a href="#">
             <img
               src="/Twitter.png" 
               alt="Twitter"
-              className="w-8 h-8 mx-2 cursor-pointer"
+              className="w-8 h-8 mx-2 my-2 cursor-pointer"
             />
           </a>
           <a href="#">
             <img
               src="/instagram.png" 
               alt="Instagram"
-              className="w-12 h-12 mx-2 cursor-pointer"
+              className="w-12 h-12 mx-2  cursor-pointer"
             />
           </a>
         </div>
