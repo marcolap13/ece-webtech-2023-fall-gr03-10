@@ -1,6 +1,5 @@
 # ece-webtech-2023-fall-grp03-10
 
-<<<<<<< HEAD
 This main's repository contains supporting materials and labs from **GRP03-10** for Web Technologies course at ECE.
 
 ## Modules
@@ -38,5 +37,3 @@ $ cd your-project
 - Marco LA
 
 - Rayan ZOUCH
-=======
->>>>>>> parent of bb5ba35 (Update README.md)
