@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function Index() {
   const [searchText, setSearchText] = useState("");
+  const [user, setUser] = useState(null);
   const router = useRouter();
 
   const handleSearch = () => {
@@ -11,6 +12,18 @@ export default function Index() {
       router.push(`/articles/${searchText}`);
     }
   };
+
+  async function getUser(){
+    const userData = await fetch('http://localhost:3000/api/profile');
+    if(userData){
+      const result = await userData.json();
+      setUser(result);
+    }
+  }
+
+  useEffect(() => {
+    getUser();
+  }, [])
 
   return (
     <div className="bg-yellow p-4 shadow-md">
@@ -34,7 +47,7 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 items-center">
           <Link href="/" passHref>
             <button className="text-sm">Main</button>
           </Link>
@@ -47,6 +60,8 @@ export default function Index() {
           <Link href="/about" passHref>
             <button className="text-sm">About</button>
           </Link>
+          <h3> {user?.username} </h3>
+          <img className="w-10" src="https://www.svgrepo.com/show/59826/avatar.svg" alt="avatar icon" />
         </div>
       </div>
     </div>
