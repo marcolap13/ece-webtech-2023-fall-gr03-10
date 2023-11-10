@@ -2,10 +2,7 @@ import Layout from '../components/Layout.js'
 
 export default function Page() {
   return (
-    <Layout
-    title="Contacts"
-    description="Contact us bro"
-    >
+    <Layout>
     <div className="bg-black text-white" style={{ height: '100vh' }}>
       <div className="max-w-2xl mx-auto p-6 text-center">
         <h1 className="text-3xl font-bold mb-4">CONTACT US</h1>
