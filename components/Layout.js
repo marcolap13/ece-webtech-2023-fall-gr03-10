@@ -1,4 +1,3 @@
-
 import Head from 'next/head'
 import Header from '../components/Header.js'
 import Footer from '../components/Footer.js'
@@ -8,10 +7,12 @@ export default function Layout({
   title,
   description
 }){
+  const pageTitle = typeof title === 'string' ? `Webtech - ${title}` : 'Webtech';
+
   return (
     <>
       <Head>
-        <title>Webtech - {title}</title>
+        <title>{pageTitle}</title>
         <meta name="description" content={description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
