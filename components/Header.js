@@ -44,6 +44,9 @@ export default function Header() {
           <Link href="/about" passHref>
             <button className="text-sm">About</button>
           </Link>
+          <Link href="/use-state" passHref>
+            <button className="text-sm">Use-state</button>
+          </Link>
 
           {/* User Profile and Connection Status */}
           <div className="flex items-center space-x-4">
