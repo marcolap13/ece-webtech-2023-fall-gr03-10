@@ -16,9 +16,9 @@ export default function Layout({
         <meta name="description" content={description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
+      <div className="flex flex-col min-h-screen">
         <Header />
-        <main className="py-10 min-h-screen max-w-full md:max-w-2xl md:mx-auto">
+        <main className="pt-24 py-10 flex-1 max-w-full md:max-w-2xl mx-auto">
           {children}
         </main>
         <Footer />

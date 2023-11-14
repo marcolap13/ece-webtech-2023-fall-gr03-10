@@ -1,45 +1,51 @@
-import { useState, useEffect } from "react";
+import React, { createContext, useState, useContext } from "react";
 import { useRouter } from "next/router";
+import users from '../data/users'; 
 
-export const UserContext = () => {
+export const UserContext = createContext(null);
+
+export const useUser = () => useContext(UserContext);
+
+export const UserProvider = ({ children }) => {
   const [searchText, setSearchText] = useState("");
   const [userProfile, setUserProfile] = useState(null);
-  const [isConnected, setIsConnected] = useState(true);
+  const [isConnected, setIsConnected] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    // Fetch the user's profile when the component mounts
-    fetch("/api/profiles")
-      .then((response) => {
-        if (response.status === 200) {
-          return response.json();
-        } else if (response.status === 401) {
-          return null;
-        } else {
-          throw new Error("Failed to fetch user profile");
-        }
-      })
-      .then((data) => {
-        setUserProfile(data);
-      })
-      .catch((error) => {
-        console.error(error);
+  const handleLogin = (username, password) => {
+    const user = users.find(u => u.username === username && u.password === password);
+    if (user) {
+      setUserProfile({
+        username,
+        image: '/LoggedIn.jpg',
+        firstname: user.firstname,
+        lastname: user.lastname,
+        address: user.address,
       });
-  }, []);
-
-  const handleSearch = () => {
-    if (searchText.trim() !== "") {
-      router.push(`/articles/${searchText}`);
+      setIsConnected(true);
+      router.push('/');
+    } else {
+      console.error('Login failed');
     }
   };
 
   const handleDisconnect = () => {
+    setUserProfile(null);
     setIsConnected(false);
   };
 
-  const handleReconnect = () => {
-    setIsConnected(true);
-  };
-
-  return { searchText, setSearchText, userProfile, isConnected, handleSearch, handleDisconnect, handleReconnect };
+  return (
+    <UserContext.Provider value={{
+      searchText,
+      setSearchText,
+      userProfile,
+      isConnected,
+      handleLogin,
+      handleDisconnect,
+    }}>
+      {children}
+    </UserContext.Provider>
+  );
 };
+
+export default UserContext;
