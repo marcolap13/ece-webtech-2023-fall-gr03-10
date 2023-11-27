@@ -30,6 +30,11 @@ $ git clone https://github.com/marcolap13/ece-webtech-2023-fall-gr03-10
 $ cd your-project
 ```
 
+2. Use this code to launch Supabase
+:
+```bash
+$ docker compose -f ./docker-compose.yml -f ./dev/docker-compose.dev.yml up
+```
 ## Authors
 
 - Steeve HUANG
