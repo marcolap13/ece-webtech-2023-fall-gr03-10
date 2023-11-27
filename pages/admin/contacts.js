@@ -16,7 +16,7 @@ export default function Contacts() {
         if (error) {
           console.error('Error fetching contacts:', error)
           return
-        }
+        } 
 
       setContacts(data);
 
