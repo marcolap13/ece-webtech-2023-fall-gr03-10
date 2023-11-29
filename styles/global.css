@@ -7,3 +7,9 @@
 .wt-title {
   @apply text-3xl font-bold underline mb-10;
 }
+
+/* CSS pour les champs de formulaire sur fond noir */
+textarea ,input{
+  color: black; /* Couleur du texte */
+}
+

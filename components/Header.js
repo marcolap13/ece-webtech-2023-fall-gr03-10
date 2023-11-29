@@ -3,6 +3,10 @@ import Link from 'next/link';
 import { useUser } from './UserContext'; 
 
 export default function Header() {
+<<<<<<< HEAD
+=======
+  
+>>>>>>> main
   const {
     searchText,
     setSearchText,
