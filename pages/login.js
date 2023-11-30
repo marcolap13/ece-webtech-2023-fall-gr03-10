@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import { Auth } from '@supabase/auth-ui-react';
 import { useRouter } from 'next/router';
-import { supabase } from '../outils/supabaseClients';
+import { supabase } from '../utils/supabaseClients';
 
 export default function Login() {
   const router = useRouter();

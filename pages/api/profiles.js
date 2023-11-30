@@ -1,7 +1,7 @@
 // Import necessary modules and components
 import React from 'react';
-import Layout from '../components/Layout';
-import { supabase } from '../utils/supabase'; // Make sure this path is correct
+import Layout from './../../components/Layout';
+import { supabase } from './../../utils/supabaseClients'; // Make sure this path is correct
 
 export default function Profile({ user }) {
   const handleLogout = async () => {

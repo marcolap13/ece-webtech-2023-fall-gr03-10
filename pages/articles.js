@@ -10,12 +10,12 @@ export default function Articles({ articles }) {
         </h1>
         <p className="italic font-bold my-5 text-orange-600">This page fetches data at build time, optimizing for SEO.</p>
         <ul>
-          {articles.map(article => (
-            <li key={article.slug} className="my-5 bg-white p-4 rounded-md shadow-md hover:shadow-lg transform hover:scale-105 transition-transform duration-200">
+          {articles?.map(article => (
+            <li key={article?.slug} className="my-5 bg-white p-4 rounded-md shadow-md hover:shadow-lg transform hover:scale-105 transition-transform duration-200">
               <h2 className="font-bold mb-1 text-orange-700">
-                <Link href={`/articles/${article.slug}`}>{article.title}</Link>
+                <Link href={`/articles/${article?.slug}`}>{article?.title}</Link>
               </h2>
-              <p className="text-gray-700">{article.message}</p>
+              <p className="text-gray-700">{article?.message}</p>
             </li>
           ))}
         </ul>
@@ -24,13 +24,13 @@ export default function Articles({ articles }) {
   )
 }
 
-export async function getStaticProps() {
-  const response = await fetch('http://localhost:3000/api/articles')
-  const articles = await response.json()
+// export async function getStaticProps() {
+//   const response = await fetch('http://localhost:3000/api/articles')
+//   const articles = await response.json()
 
-  return {
-    props: {
-      articles
-    }
-  }
-}
+//   return {
+//     props: {
+//       articles
+//     }
+//   }
+// }
