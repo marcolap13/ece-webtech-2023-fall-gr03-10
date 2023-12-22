@@ -1,46 +1,39 @@
-import React, { createContext, useState, useContext } from "react";
-import { useRouter } from "next/router";
-import users from '../data/users'; 
+import React, { createContext, useState, useEffect, useContext } from 'react';
+import { supabase } from '../utils/supabaseClients';
 
 export const UserContext = createContext(null);
 
 export const useUser = () => useContext(UserContext);
 
 export const UserProvider = ({ children }) => {
-  const [searchText, setSearchText] = useState("");
-  const [userProfile, setUserProfile] = useState(null);
-  const [isConnected, setIsConnected] = useState(false);
-  const router = useRouter();
+  const [user, setUser] = useState(null);
+  const [initialized, setInitialized] = useState(false);
 
-  const handleLogin = (username, password) => {
-    const user = users.find(u => u.username === username && u.password === password);
-    if (user) {
-      setUserProfile({
-        username,
-        image: '/LoggedIn.jpg',
-        firstname: user.firstname,
-        lastname: user.lastname,
-        address: user.address,
+  useEffect(() => {
+    setInitialized(true);
+
+    if (initialized) {
+      // Vérifie l'état de connexion initial et s'abonne aux changements d'état d'authentification
+      const session = supabase.auth.getSession();
+      setUser(session?.user);
+
+      const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+        setUser(session?.user);
       });
-      setIsConnected(true);
-      router.push('/');
-    } else {
-      console.error('Login failed');
-    }
-  };
 
-  const handleDisconnect = () => {
-    setUserProfile(null);
-    setIsConnected(false);
+      return () => {
+        authListener.unsubscribe();
+      };
+    }
+  }, [initialized]);
+
+  const handleDisconnect = async () => {
+    await supabase.auth.signOut();
   };
 
   return (
     <UserContext.Provider value={{
-      searchText,
-      setSearchText,
-      userProfile,
-      isConnected,
-      handleLogin,
+      user,
       handleDisconnect,
     }}>
       {children}
