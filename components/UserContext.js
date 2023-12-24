@@ -11,26 +11,29 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     setInitialized(true);
-
+  
     if (initialized) {
       const session = supabase.auth.getSession();
       updateUserData(session?.user);
-
-      const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+  
+      const { data: authListener, error } = supabase.auth.onAuthStateChange((_event, session) => {
         updateUserData(session?.user);
       });
-
+  
       return () => {
-        authListener.unsubscribe();
+        if (authListener && typeof authListener.unsubscribe === 'function') {
+          authListener.unsubscribe();
+        }
       };
     }
   }, [initialized]);
+  
 
   const updateUserData = async (authUser) => {
     if (authUser) {
       const { data: userDetails, error } = await supabase
         .from('user_details')
-        .select('profile_picture')
+        .select('username, profile_picture') 
         .eq('user_id', authUser.id)
         .single();
 

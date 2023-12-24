@@ -94,7 +94,7 @@ export default function Header() {
           {user ? (
             <>
               <span className="text-orange-700">
-                User: {user.user_metadata.full_name || user.email}
+                User: {user?.username || user.email}
               </span>
               <Link href="/profiles">
                 <img
