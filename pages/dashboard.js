@@ -1,3 +1,5 @@
+// UserDetails.js
+
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import { useUser } from '../components/UserContext';
@@ -19,7 +21,7 @@ const UserDetails = () => {
       const { data, error } = await supabase
         .from('user_details')
         .select(
-          'user_id, first_name, last_name, address, phone_number, gender, profile_picture, language'
+          'user_id, username, first_name, last_name, address, phone_number, gender, profile_picture, language'
         )
         .eq('user_id', user.id)
         .single();
@@ -85,6 +87,15 @@ const UserDetails = () => {
         </button>
         {showForm && Object.keys(userDetails).length > 0 && (
           <div className="max-w-lg mx-auto my-4 p-4 border rounded shadow-sm">
+            <input
+              className="w-full p-2 border rounded my-2"
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={userDetails ? userDetails.username || '' : ''}
+              onChange={handleInputChange}
+            />
+
             <input
               className="w-full p-2 border rounded my-2"
               type="text"
@@ -168,32 +179,36 @@ const UserDetails = () => {
                   <td>{userDetails?.user_id}</td>
                 </tr>
                 <tr>
+                  <td className="py-2 font-semibold">Username:</td>
+                  <td>{userDetails?.username || ''}</td>
+                </tr>
+                <tr>
                   <td className="py-2 font-semibold">First Name:</td>
                   <td>{userDetails?.first_name || ''}</td>
                 </tr>
                 <tr>
                   <td className="py-2 font-semibold">Last Name:</td>
-                  <td>{userDetails?.last_name}</td>
+                  <td>{userDetails?.last_name || ''}</td>
                 </tr>
                 <tr>
                   <td className="py-2 font-semibold">Address:</td>
-                  <td>{userDetails?.address}</td>
+                  <td>{userDetails?.address || ''}</td>
                 </tr>
                 <tr>
                   <td className="py-2 font-semibold">Phone Number:</td>
-                  <td>{userDetails?.phone_number}</td>
+                  <td>{userDetails?.phone_number || ''}</td>
                 </tr>
                 <tr>
                   <td className="py-2 font-semibold">Gender:</td>
-                  <td>{userDetails?.gender}</td>
+                  <td>{userDetails?.gender || ''}</td>
                 </tr>
                 <tr>
                   <td className="py-2 font-semibold">Profile Picture:</td>
-                  <td>{userDetails?.profile_picture}</td>
+                  <td>{userDetails?.profile_picture || ''}</td>
                 </tr>
                 <tr>
                   <td className="py-2 font-semibold">Language:</td>
-                  <td>{userDetails?.language}</td>
+                  <td>{userDetails?.language || ''}</td>
                 </tr>
               </tbody>
             </table>
