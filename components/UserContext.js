@@ -13,12 +13,11 @@ export const UserProvider = ({ children }) => {
     setInitialized(true);
 
     if (initialized) {
-      // Vérifie l'état de connexion initial et s'abonne aux changements d'état d'authentification
       const session = supabase.auth.getSession();
-      setUser(session?.user);
+      updateUserData(session?.user);
 
       const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
-        setUser(session?.user);
+        updateUserData(session?.user);
       });
 
       return () => {
@@ -26,6 +25,24 @@ export const UserProvider = ({ children }) => {
       };
     }
   }, [initialized]);
+
+  const updateUserData = async (authUser) => {
+    if (authUser) {
+      const { data: userDetails, error } = await supabase
+        .from('user_details')
+        .select('profile_picture')
+        .eq('user_id', authUser.id)
+        .single();
+
+      if (!error && userDetails) {
+        setUser({ ...authUser, ...userDetails });
+      } else {
+        setUser(authUser); 
+      }
+    } else {
+      setUser(null);
+    }
+  };
 
   const handleDisconnect = async () => {
     await supabase.auth.signOut();

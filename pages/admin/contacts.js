@@ -1,9 +1,8 @@
-// Contacts.js
 import { useState, useEffect } from 'react';
-import Link from 'next/link'; // Importer Link depuis Next.js
+import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { supabase } from '../../utils/supabaseClients';
-import { ChevronRightIcon } from '@heroicons/react/outline'; // Importer ChevronRightIcon depuis Heroicons
+import { ChevronRightIcon } from '@heroicons/react/outline'; 
 
 export default function Contacts() {
   const [contacts, setContacts] = useState([]);
