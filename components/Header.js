@@ -71,12 +71,11 @@ export default function Header() {
             className="bg-orange-500 p-2 rounded-r border-l-0"
             onClick={() => handleSearch(searchText)}
           >
-            🔍
+            
           </button>
         </div>
 
         <div className={`flex items-start space-x-10 ml-10`}>
-          {/* Liens du menu */}
           <Link href="/" passHref>
             <button className="text-sm">Home</button>
           </Link>
@@ -92,20 +91,24 @@ export default function Header() {
         </div>
 
         <div className={`flex items-center items-end space-x-12 ml-auto`}>
-          {/* Bouton de connexion/déconnexion */}
           {user ? (
             <>
-              <span className="text-orange-700">Welcome, {user.email}!</span>
-              <button
-                onClick={handleDisconnect}
-                style={rectangularButtonStyle}
-                className="text-sm ml-2"
-              >
+              <span className="text-orange-700">
+                User: {user.user_metadata.full_name || user.email}
+              </span>
+              <Link href="/profiles">
+                <img
+                  src={user?.profile_picture || "/LoggedIn.jpg"}
+                  alt="Profile"
+                  style={{ width: '45px', height: '45px', marginLeft: '10px', borderRadius: '50%' }}
+                />
+              </Link>
+              <button onClick={handleDisconnect} style={rectangularButtonStyle} className="text-sm ml-2">
                 Log Out
               </button>
             </>
           ) : (
-            <Link href="/login" passHref>
+            <Link href="/login">
               <button style={rectangularButtonStyle} className="text-sm ml-2">
                 Log In
               </button>
