@@ -103,9 +103,11 @@ export default function Header() {
                   style={{ width: '45px', height: '45px', marginLeft: '10px', borderRadius: '50%' }}
                 />
               </Link>
+              <Link href="/">
               <button onClick={handleDisconnect} style={rectangularButtonStyle} className="text-sm ml-2">
                 Log Out
               </button>
+              </Link>
             </>
           ) : (
             <Link href="/login">
