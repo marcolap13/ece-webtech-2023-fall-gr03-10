@@ -1,7 +1,6 @@
 import React from 'react';
-import { useUser } from './UserContext'; 
-import Layout from './Layout'; 
-import { supabase } from '../utils/supabaseClients';
+import { useUser } from './UserContext';
+import Layout from './Layout';
 
 
 const UserProfilePage = () => {

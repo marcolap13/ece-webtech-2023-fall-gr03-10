@@ -94,21 +94,21 @@ const ArticleDetails = () => {
       alert('You must be logged in to comment.');
       return;
     }
-  
+
     if (!newComment.trim()) {
       alert('Comment cannot be empty.');
       return;
     }
-  
+
     try {
       const { error } = await supabase
         .from('comments')
-        .insert([{ 
-          article_id: id, 
+        .insert([{
+          article_id: id,
           comment: newComment,
-          user_id: user.id 
+          user_id: user.id
         }]);
-  
+
       if (error) throw error;
       setNewComment('');
       fetchComments(id);
@@ -123,23 +123,23 @@ const ArticleDetails = () => {
       return;
     }
     const replyText = replies[parentCommentId];
-  
+
     if (!replyText || !replyText.trim()) {
       alert('Reply cannot be empty.');
       return;
     }
-  
+
     try {
       const { error } = await supabase
         .from('comment_replies')
-        .insert([{ 
-          parent_comment_id: parentCommentId, 
-          user_id: user.id, 
-          reply: replyText 
+        .insert([{
+          parent_comment_id: parentCommentId,
+          user_id: user.id,
+          reply: replyText
         }]);
-  
+
       if (error) throw error;
-      setReplies({ ...replies, [parentCommentId]: '' }); 
+      setReplies({ ...replies, [parentCommentId]: '' });
       fetchComments(id);
       fetchReplyComments(parentCommentId);
     } catch (error) {
@@ -166,35 +166,35 @@ const ArticleDetails = () => {
         </div>
       )}
       <div className="mb-4">
-    <div className="overflow-x-auto">
-      <table className="min-w-full divide-y divide-gray-200 border border-black">
-        <tbody>
-          <tr className="border border-black">
-            <td className="px-6 py-3 font-bold text-gray-900 border border-black">Content</td>
-            <td className="px-6 py-3 border border-black text-center align-middle">{article.content}</td>
-          </tr>
-          <tr className="border border-black">
-            <td className="px-6 py-3 font-bold text-gray-900 border border-black">Price</td>
-            <td className="px-6 py-3 border border-black text-center align-middle">{article.price}$</td>
-          </tr>
-          <tr className="border border-black">
-            <td className="px-6 py-3 font-bold text-gray-900 border border-black">Location</td>
-            <td className="px-6 py-3 border border-black text-center align-middle">{article.location}</td>
-          </tr>
-          <tr className="border border-black">
-            <td className="px-6 py-3 font-bold text-gray-900 border border-black">Category</td>
-            <td className="px-6 py-3 border border-black text-center align-middle">{article.category}</td>
-          </tr>
-          <tr className="border border-black">
-            <td className="px-6 py-3 font-bold text-gray-900 border border-black">Published Date</td>
-            <td className="px-6 py-3 border border-black text-center align-middle">{new Date(article.publish_date).toLocaleString('en-US', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-              })}</td>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200 border border-black">
+            <tbody>
+              <tr className="border border-black">
+                <td className="px-6 py-3 font-bold text-gray-900 border border-black">Content</td>
+                <td className="px-6 py-3 border border-black text-center align-middle">{article.content}</td>
+              </tr>
+              <tr className="border border-black">
+                <td className="px-6 py-3 font-bold text-gray-900 border border-black">Price</td>
+                <td className="px-6 py-3 border border-black text-center align-middle">{article.price}$</td>
+              </tr>
+              <tr className="border border-black">
+                <td className="px-6 py-3 font-bold text-gray-900 border border-black">Location</td>
+                <td className="px-6 py-3 border border-black text-center align-middle">{article.location}</td>
+              </tr>
+              <tr className="border border-black">
+                <td className="px-6 py-3 font-bold text-gray-900 border border-black">Category</td>
+                <td className="px-6 py-3 border border-black text-center align-middle">{article.category}</td>
+              </tr>
+              <tr className="border border-black">
+                <td className="px-6 py-3 font-bold text-gray-900 border border-black">Published Date</td>
+                <td className="px-6 py-3 border border-black text-center align-middle">{new Date(article.publish_date).toLocaleString('en-US', {
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  second: '2-digit'
+                })}</td>
               </tr>
             </tbody>
           </table>
@@ -221,7 +221,7 @@ const ArticleDetails = () => {
 
               {user && (
                 <>
-                  <button 
+                  <button
                     onClick={() => toggleRepliesVisibility(comment.id)}
                     className="bg-gray-200 hover:bg-gray-300 text-black font-bold py-1 px-2 rounded mt-2"
                   >
@@ -267,13 +267,13 @@ const ArticleDetails = () => {
         ))}
         {user ? (
           <div>
-            <textarea 
+            <textarea
               className="w-full border p-2 rounded mt-4"
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
               placeholder="Add a comment"
             />
-            <button 
+            <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3"
               onClick={submitComment}
             >

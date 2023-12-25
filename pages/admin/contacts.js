@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { supabase } from '../../utils/supabaseClients';
-import { ChevronRightIcon } from '@heroicons/react/outline'; 
+import { ChevronRightIcon } from '@heroicons/react/outline';
 
 export default function Contacts() {
   const [contacts, setContacts] = useState([]);
@@ -13,7 +13,7 @@ export default function Contacts() {
         let { data, error, status } = await supabase
           .from('contacts')
           .select('id, firstname, lastname, email');
-        
+
         if (error) {
           console.error('Error fetching contacts:', error);
         } else {
