@@ -1,7 +1,7 @@
 import "../styles/global.css";
 import RootLayout from "../components/Layout";
 import { UserProvider } from "../components/UserContext";
-import { supabase } from '../utils/supabaseClients'; 
+import { supabase } from '../utils/supabaseClients';
 
 function MyApp({ Component, pageProps }) {
   return (
