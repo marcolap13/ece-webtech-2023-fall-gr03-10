@@ -11,15 +11,15 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     setInitialized(true);
-
+  
     if (initialized) {
       const session = supabase.auth.getSession();
       updateUserData(session?.user);
-
+  
       const { data: authListener, error } = supabase.auth.onAuthStateChange((_event, session) => {
         updateUserData(session?.user);
       });
-
+  
       return () => {
         if (authListener && typeof authListener.unsubscribe === 'function') {
           authListener.unsubscribe();
@@ -27,19 +27,20 @@ export const UserProvider = ({ children }) => {
       };
     }
   }, [initialized]);
+  
 
   const updateUserData = async (authUser) => {
     if (authUser) {
       const { data: userDetails, error } = await supabase
         .from('user_details')
-        .select('username, profile_picture')
+        .select('username, profile_picture') 
         .eq('user_id', authUser.id)
         .single();
 
       if (!error && userDetails) {
         setUser({ ...authUser, ...userDetails });
       } else {
-        setUser(authUser);
+        setUser(authUser); 
       }
     } else {
       setUser(null);
@@ -51,12 +52,10 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider
-      value={{
-        user,
-        handleDisconnect,
-      }}
-    >
+    <UserContext.Provider value={{
+      user,
+      handleDisconnect,
+    }}>
       {children}
     </UserContext.Provider>
   );
