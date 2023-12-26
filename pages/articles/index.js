@@ -1,12 +1,12 @@
 // pages/articles.js
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../utils/supabaseClients';
-import { useUser } from '/context/UserContext'; 
+import { useUser } from '/context/UserContext';
 import Link from 'next/link'; // Importez Link
-import { useTheme} from "../../context/ThemeContext";
+import { useTheme } from "../../context/ThemeContext";
 
 const Articles = () => {
-  const { theme } = useTheme(); 
+  const { theme } = useTheme();
   const [articles, setArticles] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const { user, handleDisconnect } = useUser();
@@ -51,11 +51,11 @@ const Articles = () => {
     if (!requestData.id) {
       delete requestData.id; // Supprimer l'id pour les nouveaux articles
     }
-  
+
     const { data, error } = requestData.id
       ? await supabase.from('articles').update(requestData).match({ id: requestData.id })
       : await supabase.from('articles').insert([requestData]);
-  
+
     if (error) {
       console.error('Error:', error);
       alert('An error occurred while processing your request.');
@@ -76,7 +76,7 @@ const Articles = () => {
       setShowForm(false);
       alert('Article processed successfully!');
 
-    location.reload();
+      location.reload();
     }
   };
 
@@ -91,7 +91,7 @@ const Articles = () => {
         .from('articles')
         .delete()
         .match({ id });
-  
+
       if (error) {
         console.log('Error', error);
         alert('An error occurred while deleting the article.');
@@ -112,26 +112,28 @@ const Articles = () => {
   return (
     <div className="p-4">
       <h1 className="text-2xl text-center font-bold mb-4">Articles</h1>
-      {user&&(
-      <button 
-        onClick={() => { setArticleForm({
-          id: null,
-          title: '',
-          content: '',
-          picture_url: '',
-          price: '',
-          location: '',
-          category: '',
-          published: true,
-          publish_date: new Date().toISOString(),
-        }); setShowForm(!showForm); console.log(user);}}
-         
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4"
-      >
-        {showForm ? 'Hide Form' : 'Create New Article'}
-      </button>)}
-      
-      {user&& showForm && (
+      {user && (
+        <button
+          onClick={() => {
+            setArticleForm({
+              id: null,
+              title: '',
+              content: '',
+              picture_url: '',
+              price: '',
+              location: '',
+              category: '',
+              published: true,
+              publish_date: new Date().toISOString(),
+            }); setShowForm(!showForm); console.log(user);
+          }}
+
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4"
+        >
+          {showForm ? 'Hide Form' : 'Create New Article'}
+        </button>)}
+
+      {user && showForm && (
         <div className="max-w-lg mx-auto my-4 p-4 border rounded shadow-sm">
           <input className="w-full p-2 border rounded my-2" type="text" name="title" placeholder="Title" value={articleForm.title} onChange={handleInputChange} />
           <textarea className="w-full p-2 border rounded my-2" name="content" placeholder="Content" value={articleForm.content} onChange={handleInputChange}></textarea>
@@ -146,10 +148,10 @@ const Articles = () => {
         </div>
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-full">
-      {articles.map(article => (
-        <Link href={`/articles/${article.id}`} key={article.id}>
+        {articles.map(article => (
+          <Link href={`/articles/${article.id}`} key={article.id}>
             <div className="border p-4 rounded transition duration-300 hover:bg-gray-200 rounded-lg h-full flex flex-col"
-            style = {Layoutstyle}>
+              style={Layoutstyle}>
               <h2 className="text-xl font-semibold mb-2 cursor-pointer hover:underline">{article.title}</h2>
               {article.picture_url && (
                 <img src={article.picture_url} alt={article.title} className="w-80 h-48 object-cover mb-2 rounded" />
@@ -166,10 +168,10 @@ const Articles = () => {
                 </div>
               )}
             </div>
-        </Link>
-      ))}
+          </Link>
+        ))}
+      </div>
     </div>
-  </div>
   );
 };
 

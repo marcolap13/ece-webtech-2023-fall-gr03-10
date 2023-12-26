@@ -34,7 +34,7 @@ export const UserProvider = ({ children }) => {
     if (authUser) {
       const { data: userDetails, error } = await supabase
         .from('user_details')
-        .select('username, profile_picture, biography')
+        .select('username, profile_picture')
         .eq('user_id', authUser.id)
         .single();
 
