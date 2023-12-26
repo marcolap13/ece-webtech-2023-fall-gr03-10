@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '../../utils/supabaseClients';
 import { useUser } from '../../components/UserContext';
+import Link from 'next/link';
+
 
 const ArticleDetails = () => {
   const [article, setArticle] = useState(null);
@@ -159,11 +161,21 @@ const ArticleDetails = () => {
 
   return (
     <div className="container mx-auto my-8 p-6 max-w-3xl bg-white rounded-lg shadow-md">
-      {article.picture_url && (
-        <div className="mb-4 text-center">
+      <div className="flex justify-start items-center mb-4">
+        <button
+          onClick={() => router.push('/articles')}
+          className="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Back to Feed
+        </button>
+      </div>
+      <div className="mb-4 text-center" style={{ marginTop: '10px' }}>
+        {article.picture_url && (
           <img src={article.picture_url} alt={article.title} className="w-full h-auto rounded-md mx-auto" />
-          <h1 className="text-4xl font-semibold mt-4">{article.title}</h1>
-        </div>
+        )}
+      </div>
+      {article.title && (
+        <h1 className="text-4xl font-semibold mt-4">{article.title}</h1>
       )}
       <div className="mb-4">
         <div className="overflow-x-auto">

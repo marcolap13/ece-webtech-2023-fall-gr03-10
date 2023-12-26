@@ -17,7 +17,7 @@ const Layout = ({ children, title, description }) => {
       <div
         className="flex flex-col min-h-screen text-center"
         style={{
-          backgroundImage: `url(/background.jpg)`,
+          backgroundImage: `url(https://i.ibb.co/GQTqG8K/background.jpg)`,
           backgroundSize: "cover",
         }}
       >
