@@ -12,3 +12,22 @@
 textarea ,input{
   color: black; /* Couleur du texte */
 }
+
+/* Style pour les boutons */
+.styledButton {
+  color: black;             /* Couleur du texte */
+  padding: 5px 10px;       /* Padding autour du texte */
+  border-radius: 5px;       /* Bords arrondis */
+  text-transform: uppercase;/* Texte en majuscules */
+  text-decoration: none;    /* Pas de soulignement */
+  font-size: 16px;          /* Taille de la police */
+  font-weight: bold;        /* Poids de la police */
+  transition: all 0.3s;     /* Transition douce pour les interactions */
+  cursor: pointer;          /* Curseur en forme de pointeur */
+  
+}
+
+/* Style pour le survol */
+.styledButton:hover {
+  background-color: #FFA500;
+}

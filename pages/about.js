@@ -1,32 +1,37 @@
-import Layout from '../components/Layout.js'
-
 export default function Page() {
   return (
-    <Layout>
-      <div className="bg-gray-100 min-h-screen py-12">
-        <div className="max-w-5xl mx-auto p-8">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-orange-600 mb-8">About AliBobo</h1>
-            <img src="steeve.jpg" alt="AliBobo Logo" className="mx-auto w-32 h-32 rounded-full mb-8" />
-          </div>
-          <div className="bg-white shadow-lg p-8 rounded-lg">
-            <p className="text-lg text-gray-700 mb-6">
-              Launched in 2023, AliBobo is an innovative online marketplace aimed at serving
-              millions of consumers and entrepreneurs worldwide. Inspired by the desire to connect
-              businesses globally, we quickly became an indispensable leader in the world of e-commerce.
-            </p>
-            <p className="text-lg text-gray-700 mb-6">
-              Our mission is to offer the best online shopping experience with a broad
-              selection of products, competitive prices, and swift delivery. Every day,
-              we tirelessly work to build trust with our customers and partners.
-            </p>
-            <p className="text-lg text-gray-700">
-              At AliBobo, your satisfaction is our priority. Thank you for choosing us and
-              for accompanying us on this remarkable journey!
-            </p>
-          </div>
+    <div className="max-w-5xl mx-auto p-8">
+
+      <div className="text-center">
+        <h1 className="text-4xl font-bold text-black-600 mb-8">Our Collaborators</h1>
+      </div>
+
+      <div className="flex justify-center space-x-10 mb-12">
+        {/* Collaborateurs */}
+        {[
+          { name: "Marco", link: "https://www.linkedin.com/in/marco-la-05a4021b3/" },
+          { name: "Rayan", link: "https://www.linkedin.com/in/rayan-zouch/" },
+          { name: "Steeve", link: "https://www.linkedin.com/in/steeve-huang-824801221/" },
+        ].map((profile) => (
+          <a href={profile.link} key={profile.name} className="text-center">
+            <img
+              src={`${profile.name.toLowerCase()}.jpg`}
+              alt={`${profile.name} Profile Pic`}
+              className="w-24 h-24 object-cover rounded-full mb-2"
+            />
+            <p className="text-xl font-semibold">{profile.name}</p>
+          </a>
+        ))}
+      </div>
+      <div className="bg-white shadow-lg p-8 rounded-lg">
+      <img src="about.png" alt="AliBobo Logo" className="mx-auto w-32 h-32 rounded-full mb-8" />
+        <div className="mt-8">
+          <h2 className="text-2xl font-semibold mb-4">About Us</h2>
+          <p className="text-lg text-gray-700 mb-6">
+            We are three students who have created an e-commerce resale platform named AliBobo. Our platform provides a seamless experience for buying and selling a wide range of products.
+          </p>
         </div>
       </div>
-    </Layout>
-  )
+    </div>
+  );
 }

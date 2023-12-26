@@ -1,7 +1,4 @@
-// UserDetails.js
-
 import React, { useEffect, useState } from 'react';
-import Layout from '../components/Layout';
 import { useUser } from '../components/UserContext';
 import { supabase } from '../utils/supabaseClients';
 
@@ -76,9 +73,53 @@ const UserDetails = () => {
   };
 
   return (
-    <Layout title="User Details" description="View and update user details">
-      <div className="p-4">
-        <h1 className="text-2xl text-center font-bold mb-4">User Details</h1>
+      <div className="p-20 justify-center items-center">
+        <h1 className="text-2xl text-center font-bold mb-4 ">User Details</h1>
+        <div className="max-w-lg mx-auto my-4 p-4 border rounded shadow-sm bg-white bg-opacity-70 shadow-lg rounded-lg">
+          {Object.keys(userDetails).length > 0 && (
+            <table className="w-full">
+              <tbody>
+                <tr>
+                  <td className="py-2 font-semibold">User ID:</td>
+                  <td>{userDetails?.user_id}</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-semibold">Username:</td>
+                  <td>{userDetails?.username || ''}</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-semibold">First Name:</td>
+                  <td>{userDetails?.first_name || ''}</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-semibold">Last Name:</td>
+                  <td>{userDetails?.last_name || ''}</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-semibold">Address:</td>
+                  <td>{userDetails?.address || ''}</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-semibold">Phone Number:</td>
+                  <td>{userDetails?.phone_number || ''}</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-semibold">Gender:</td>
+                  <td>{userDetails?.gender || ''}</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-semibold">Profile Picture:</td>
+                  <td>{userDetails?.profile_picture || ''}</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-semibold">Language:</td>
+                  <td>{userDetails?.language || ''}</td>
+                </tr>
+              </tbody>
+            </table>
+          )}
+          
+        </div>
         <button
           onClick={() => setShowForm(!showForm)}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4"
@@ -86,7 +127,7 @@ const UserDetails = () => {
           {showForm ? 'Hide Form' : 'Edit User Details'}
         </button>
         {showForm && Object.keys(userDetails).length > 0 && (
-          <div className="max-w-lg mx-auto my-4 p-4 border rounded shadow-sm">
+          <div className="max-w-lg mx-auto  border rounded shadow-sm">
             <input
               className="w-full p-2 border rounded my-2"
               type="text"
@@ -170,52 +211,7 @@ const UserDetails = () => {
             </button>
           </div>
         )}
-        <div className="max-w-lg mx-auto my-4 p-4 border rounded shadow-sm">
-          {Object.keys(userDetails).length > 0 && (
-            <table className="w-full">
-              <tbody>
-                <tr>
-                  <td className="py-2 font-semibold">User ID:</td>
-                  <td>{userDetails?.user_id}</td>
-                </tr>
-                <tr>
-                  <td className="py-2 font-semibold">Username:</td>
-                  <td>{userDetails?.username || ''}</td>
-                </tr>
-                <tr>
-                  <td className="py-2 font-semibold">First Name:</td>
-                  <td>{userDetails?.first_name || ''}</td>
-                </tr>
-                <tr>
-                  <td className="py-2 font-semibold">Last Name:</td>
-                  <td>{userDetails?.last_name || ''}</td>
-                </tr>
-                <tr>
-                  <td className="py-2 font-semibold">Address:</td>
-                  <td>{userDetails?.address || ''}</td>
-                </tr>
-                <tr>
-                  <td className="py-2 font-semibold">Phone Number:</td>
-                  <td>{userDetails?.phone_number || ''}</td>
-                </tr>
-                <tr>
-                  <td className="py-2 font-semibold">Gender:</td>
-                  <td>{userDetails?.gender || ''}</td>
-                </tr>
-                <tr>
-                  <td className="py-2 font-semibold">Profile Picture:</td>
-                  <td>{userDetails?.profile_picture || ''}</td>
-                </tr>
-                <tr>
-                  <td className="py-2 font-semibold">Language:</td>
-                  <td>{userDetails?.language || ''}</td>
-                </tr>
-              </tbody>
-            </table>
-          )}
-        </div>
       </div>
-    </Layout>
   );
 };
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import Layout from '../components/Layout';
 import { Auth } from '@supabase/auth-ui-react';
 import { useRouter } from 'next/router';
 import { supabase } from '../utils/supabaseClients';
@@ -7,22 +6,23 @@ import { supabase } from '../utils/supabaseClients';
 export default function Login() {
   const router = useRouter();
 
-  // Gère les changements d'état de l'utilisateur
   const handleUserStateChanged = (event, session) => {
     if (event === 'SIGNED_IN') {
-      router.push('/profile'); // Redirige vers la page de profil après la connexion
+      router.push('/profile');
     }
   };
 
   return (
-    <Layout>
-      <div className="max-w-md mx-auto my-10">
+    <div className="p-20 flex flex-col justify-center items-center">
+      <div className="max-w-md mx-auto my-10 p-8 bg-white bg-opacity-70 shadow-lg rounded-lg">
+        <h2 className="text-2xl font-bold text-center mb-4">Sign In to Your Account</h2>
         <Auth
           supabaseClient={supabase}
           onUserStateChanged={handleUserStateChanged}
-          providers={['github']} // Utiliser GitHub comme fournisseur
+          providers={['github']}
+          className="text-center"
         />
       </div>
-    </Layout>
+    </div>
   );
 }
