@@ -69,7 +69,7 @@ export default function Header() {
       ? "var(--background-color-dark)"
       : "var(--background-color-light)",
     color: isDarkMode ? "var(--text-color-dark)" : "var(--text-color-light)",
-    opacity: headerOpacity, 
+    opacity: headerOpacity,
   };
 
   return (
@@ -78,7 +78,9 @@ export default function Header() {
       style={innerHeaderStyle}
     >
       <div className="container mx-auto flex items-center justify-between">
-        <div className="text-4xl font-bold text-orange-700">ALIBOBO</div>
+        <Link href="/" className="text-4xl font-bold text-orange-700 cursor-pointer">
+          ALIBOBO
+        </Link>
 
         <div className="relative flex mx-auto">
           <input
@@ -138,7 +140,16 @@ export default function Header() {
                   <span className="text-orange-700">
                     {user?.username || user.email}
                   </span>
-                  <GravatarComponent email={userEmail} />
+
+                  {user?.profile_picture ? (
+                    <img
+                      src={user.profile_picture}
+                      alt="Profile"
+                      style={{ width: '45px', height: '45px', marginLeft: '10px', borderRadius: '50%' }}
+                    />
+                  ) : (
+                    <GravatarComponent email={userEmail} />
+                  )}
                 </div>
               </Link>
 
@@ -167,9 +178,8 @@ export default function Header() {
             className="flex items-center cursor-pointer"
           >
             <div
-              className={`relative ml-3 ${
-                isDarkMode ? "bg-gray-800" : "bg-gray-600"
-              } w-14 h-8 rounded-full`}
+              className={`relative ml-3 ${isDarkMode ? "bg-gray-800" : "bg-gray-600"
+                } w-14 h-8 rounded-full`}
             >
               <input
                 id="darkModeToggle"
@@ -179,11 +189,9 @@ export default function Header() {
                 onChange={toggleTheme}
               />
               <div
-                className={`dot absolute left-1 top-1 ${
-                  isDarkMode ? "bg-gray-300" : "bg-white"
-                } w-6 h-6 rounded-full transition-transform ${
-                  isDarkMode ? "translate-x-6" : ""
-                }`}
+                className={`dot absolute left-1 top-1 ${isDarkMode ? "bg-gray-300" : "bg-white"
+                  } w-6 h-6 rounded-full transition-transform ${isDarkMode ? "translate-x-6" : ""
+                  }`}
               ></div>
             </div>
             <div className="max-w-12 ml-3 text-gray-700 font-medium">

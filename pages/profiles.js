@@ -19,7 +19,7 @@ const ProfilesPage = () => {
           const { data: authData, error: authError } = await supabase
             .from("authentications")
             .select(
-              "id, email, phone_number, provider, created_at, last_sign_in_at, app_metadata"
+              "id, email, phone_number, provider, created_at, biography, last_sign_in_at, app_metadata"
             )
             .eq("id", user.id)
             .single();
@@ -52,7 +52,11 @@ const ProfilesPage = () => {
             <span className="font-semibold">Email:</span> {user.email}
           </p>
           <p className="text-xl mb-4">
-            <span className="font-semibold">Account Creation Date:</span> {user.biography}
+            <span className="font-semibold">Account Creation Date:<br /></span>
+            {user.created_at}
+          </p>
+          <p className="text-xl mb-4">
+            <span className="font-semibold">Biography:</span> {user.biography}
           </p>
           <button
             onClick={navigateToDashboard}
@@ -66,9 +70,9 @@ const ProfilesPage = () => {
       )}
     </div>
   );
-  
-  
-  
+
+
+
 };
 
 export default ProfilesPage;

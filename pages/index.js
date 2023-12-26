@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useTheme} from "../context/ThemeContext";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Page() {
-  const { theme } = useTheme(); 
+  const { theme } = useTheme();
 
   const Layoutstyle = {
     backgroundColor: theme === 'dark' ? 'var(--background-color-dark)' : 'var(--background-color-light)',
@@ -28,7 +28,7 @@ export default function Page() {
 
       <div className="pt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mx-auto">
         <div className="p-8 rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition-transform duration-200"
-        style = {Layoutstyle}>
+          style={Layoutstyle}>
           <h2 className="text-2xl font-semibold text-orange-700 mb-6">
             Diverse Choices
           </h2>
@@ -38,7 +38,7 @@ export default function Page() {
           </p>
         </div>
         <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition-transform duration-200"
-        style = {Layoutstyle}>
+          style={Layoutstyle}>
           <h2 className="text-2xl font-semibold text-orange-700 mb-6">
             Swift Shipments
           </h2>
@@ -48,7 +48,7 @@ export default function Page() {
           </p>
         </div>
         <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition-transform duration-200"
-        style = {Layoutstyle}>
+          style={Layoutstyle}>
           <h2 className="text-2xl font-semibold text-orange-700 mb-6">
             24/7 Support
           </h2>

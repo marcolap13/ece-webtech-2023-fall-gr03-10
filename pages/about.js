@@ -1,7 +1,7 @@
-import { useTheme} from "../context/ThemeContext";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Page() {
-  const { theme } = useTheme(); 
+  const { theme } = useTheme();
 
   const Layoutstyle = {
     backgroundColor: theme === 'dark' ? 'var(--background-color-dark)' : 'var(--background-color-light)',
@@ -36,8 +36,8 @@ export default function Page() {
         ))}
       </div>
       <div className=" shadow-lg p-8 rounded-lg"
-      style = {Layoutstyle}>
-      <img src="about.png" alt="AliBobo Logo" className="mx-auto w-32 h-32 rounded-full mb-8" />
+        style={Layoutstyle}>
+        <img src="about.png" alt="AliBobo Logo" className="mx-auto w-32 h-32 rounded-full mb-8" />
         <div className="mt-8">
           <h2 className="text-2xl font-semibold mb-4">About Us</h2>
           <p className="text-lg  mb-6">
