@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useUser } from '../components/UserContext';
+import { useUser } from '../context/UserContext';
 import { supabase } from '../utils/supabaseClients';
 
 const UserDetails = () => {

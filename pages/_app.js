@@ -1,15 +1,28 @@
 import "../styles/global.css";
 import RootLayout from "../components/Layout";
-import { UserProvider } from "../components/UserContext";
-import { supabase } from '../utils/supabaseClients';
+import { ThemeProvider, useTheme } from '../context/ThemeContext';
+import { UserProvider } from "../context/UserContext";
 
-function MyApp({ Component, pageProps }) {
+// Créez un nouveau composant pour gérer l'application de votre thème
+function ThemedApp({ Component, pageProps }) {
+  const { theme } = useTheme();
+
   return (
-    <UserProvider>
+    <div data-theme={theme}>
       <RootLayout>
         <Component {...pageProps} />
       </RootLayout>
-    </UserProvider>
+    </div>
+  );
+}
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <ThemeProvider>
+      <UserProvider>
+        <ThemedApp Component={Component} pageProps={pageProps} />
+      </UserProvider>
+    </ThemeProvider>
   );
 }
 

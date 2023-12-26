@@ -1,10 +1,12 @@
 // pages/articles.js
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../utils/supabaseClients';
-import { useUser } from '/components/UserContext'; 
+import { useUser } from '/context/UserContext'; 
 import Link from 'next/link'; // Importez Link
+import { useTheme} from "../../context/ThemeContext";
 
 const Articles = () => {
+  const { theme } = useTheme(); 
   const [articles, setArticles] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const { user, handleDisconnect } = useUser();
@@ -99,7 +101,13 @@ const Articles = () => {
       }
     }
   };
-  
+
+  const Layoutstyle = {
+    backgroundColor: theme === 'dark' ? 'var(--background-color-dark)' : 'var(--background-color-light)',
+    color: theme === 'dark' ? 'var(--text-color-dark)' : 'var(--text-color-light)',
+    padding: "20px",
+    textAlign: "center",
+  };
 
   return (
     <div className="p-4">
@@ -140,7 +148,8 @@ const Articles = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-full">
       {articles.map(article => (
         <Link href={`/articles/${article.id}`} key={article.id}>
-            <div className="bg-white border p-4 rounded transition duration-300 hover:bg-gray-200 rounded-lg h-full flex flex-col">
+            <div className="border p-4 rounded transition duration-300 hover:bg-gray-200 rounded-lg h-full flex flex-col"
+            style = {Layoutstyle}>
               <h2 className="text-xl font-semibold mb-2 cursor-pointer hover:underline">{article.title}</h2>
               {article.picture_url && (
                 <img src={article.picture_url} alt={article.title} className="w-80 h-48 object-cover mb-2 rounded" />

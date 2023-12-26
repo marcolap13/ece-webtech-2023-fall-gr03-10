@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useUser } from "./UserContext";
+import { useUser } from "../context/UserContext";
+import { useTheme } from "../context/ThemeContext";
 import GravatarComponent from "./GravatarComponent";
 
 export default function Header() {
@@ -15,8 +16,10 @@ export default function Header() {
 
   const [headerOpacity, setHeaderOpacity] = useState(1);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
   const [userEmail, setUserEmail] = useState("");
+
+  const { theme, toggleTheme } = useTheme();
+  const isDarkMode = theme === "dark";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,35 +34,16 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    setDarkMode(savedTheme === "dark");
-  }, []);
-
-  useEffect(() => {
     if (user && user.email) {
       setUserEmail(user.email);
     }
   }, [user?.email]);
-
-  const toggleTheme = () => {
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
-    localStorage.setItem("theme", newDarkMode ? "dark" : "light");
-  };
 
   const rectangularButtonStyle = {
     padding: "8px 16px",
     borderRadius: "4px",
     backgroundColor: "#FF6600",
     color: "#fff",
-  };
-
-  const headerStyle = {
-    backgroundColor: darkMode
-      ? `rgba(255, 255, 255, ${headerOpacity})`
-      : `rgba(2, 34, 50, ${headerOpacity})`,
-    opacity: headerOpacity,
-    transition: "background-color 0.5s",
   };
 
   const initiateSearch = () => {
@@ -80,13 +64,22 @@ export default function Header() {
     return null;
   }
 
+  const innerHeaderStyle = {
+    backgroundColor: isDarkMode
+      ? "var(--background-color-dark)"
+      : "var(--background-color-light)",
+    color: isDarkMode ? "var(--text-color-dark)" : "var(--text-color-light)",
+    opacity: headerOpacity, 
+  };
+
   return (
     <div
       className="p-4 shadow-md fixed top-0 left-0 right-0 z-50"
-      style={headerStyle}
+      style={innerHeaderStyle}
     >
-      <div className="container mx-auto flex items-center justify-between ">
+      <div className="container mx-auto flex items-center justify-between">
         <div className="text-4xl font-bold text-orange-700">ALIBOBO</div>
+
         <div className="relative flex mx-auto">
           <input
             type="text"
@@ -99,10 +92,10 @@ export default function Header() {
             className="bg-orange-500 p-2 rounded-r border-l-0"
             onClick={initiateSearch}
           >
-            Search
+            🔎
           </button>
 
-          <div className="search-results absolute top-full mt-1 bg-white shadow-lg max-h-60 w-full overflow-auto z-50">
+          <div className="search-results absolute top-full mt-1 bg-white text-black shadow-lg max-h-60 w-full overflow-auto z-50">
             {searchText.length > 0 && searchResults.length === 0 ? (
               <div className="p-2">No results found</div>
             ) : (
@@ -161,12 +154,13 @@ export default function Header() {
             </>
           ) : (
             <Link href="/login">
-              <button style={rectangularButtonStyle} className="text-sm ml-2">
+              <button style={rectangularButtonStyle} className="text-sm ml-2 styledButton">
                 Log In
               </button>
             </Link>
           )}
         </div>
+
         <div className="flex items-center cursor-pointer ml-4">
           <label
             htmlFor="darkModeToggle"
@@ -174,29 +168,26 @@ export default function Header() {
           >
             <div
               className={`relative ml-3 ${
-                darkMode ? "text-gray-300" : "text-gray-700"
-              }`}
+                isDarkMode ? "bg-gray-800" : "bg-gray-600"
+              } w-14 h-8 rounded-full`}
             >
               <input
                 id="darkModeToggle"
                 type="checkbox"
                 className="sr-only"
-                checked={darkMode}
+                checked={isDarkMode}
                 onChange={toggleTheme}
               />
               <div
-                className={`block ${
-                  darkMode ? "bg-gray-800" : "bg-gray-600"
-                } w-14 h-8 rounded-full`}
-              ></div>
-              <div
                 className={`dot absolute left-1 top-1 ${
-                  darkMode ? "bg-gray-300" : "bg-white"
-                } w-6 h-6 rounded-full`}
+                  isDarkMode ? "bg-gray-300" : "bg-white"
+                } w-6 h-6 rounded-full transition-transform ${
+                  isDarkMode ? "translate-x-6" : ""
+                }`}
               ></div>
             </div>
             <div className="max-w-12 ml-3 text-gray-700 font-medium">
-              {darkMode ? "Light" : "Dark"}
+              {isDarkMode ? "Light" : "Dark"}
             </div>
           </label>
         </div>

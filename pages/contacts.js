@@ -1,8 +1,9 @@
 import { useState } from "react";
-import Layout from "../components/Layout.js";
 import { supabase } from '../utils/supabaseClients';
+import { useTheme} from "../context/ThemeContext";
 
 export default function Page() {
+  const { theme } = useTheme(); 
   const [message, setMessage] = useState(null);
   const onSubmit = async function (e) {
     e.preventDefault();
@@ -21,8 +22,18 @@ export default function Page() {
       );
     }
   };
+
+  const Layoutstyle = {
+    backgroundColor: theme === 'dark' ? 'var(--background-color-dark)' : 'var(--background-color-light)',
+    color: theme === 'dark' ? 'var(--text-color-dark)' : 'var(--text-color-light)',
+    padding: "20px",
+    textAlign: "center",
+  };
+
   return (
-    <div className="p-20 bg-grey text-white flex flex-col justify-center items-center">
+    <div className="p-20">
+    <div className="p-20  flex flex-col justify-center items-center"
+    style = {Layoutstyle}>
       <h1 className="wt-title">Contact us</h1>
 
       <form className="[&_span]:block grid gap-3" onSubmit={onSubmit}>
@@ -71,6 +82,7 @@ export default function Page() {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 }

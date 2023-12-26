@@ -15,7 +15,6 @@ textarea ,input{
 
 /* Style pour les boutons */
 .styledButton {
-  color: black;             /* Couleur du texte */
   padding: 5px 10px;       /* Padding autour du texte */
   border-radius: 5px;       /* Bords arrondis */
   text-transform: uppercase;/* Texte en majuscules */
@@ -30,4 +29,36 @@ textarea ,input{
 /* Style pour le survol */
 .styledButton:hover {
   background-color: #FFA500;
+}
+
+/* styles/globals.css */
+
+/* Pour le thème clair */
+:root {
+  --background-color-light: #f8f8f8;
+  --text-color-light: #000;
+  --table-border-color-light: black;
+}
+
+/* Pour le thème sombre */
+[data-theme='dark'] {
+  --background-color-dark: #020420;
+  --text-color-dark: #fff;
+  --table-border-color-dark: white;
+}
+
+/* Appliquer la transition à tous les éléments */
+body, footer, header, div, p {
+  transition: background-color 0.5s, color 0.1s, border-color 0.5s; /* Ajout de border-color */
+}
+
+/* Appliquer la transition à la bordure de la table */
+.table-with-border {
+  border-color: var(--table-border-color-light);
+  transition: border-color 0.5s;
+}
+
+/* Changer la couleur de la bordure pour le thème sombre */
+[data-theme='dark'] .table-with-border {
+  border-color: var(--table-border-color-dark);
 }
