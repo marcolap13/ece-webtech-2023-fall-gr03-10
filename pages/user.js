@@ -1,5 +1,4 @@
 import React from 'react';
-import Layout from '../components/Layout';
 import { useUser } from '../components/UserContext';
 
 const UserProfilePage = () => {
@@ -13,7 +12,6 @@ const UserProfilePage = () => {
   }
 
   return (
-    <Layout>
       <div className="container mx-auto mt-10 p-4">
         <h1 className="text-2xl font-semibold mb-4">User Profile</h1>
         <div className="mb-3">
@@ -26,7 +24,6 @@ const UserProfilePage = () => {
           <strong>Address:</strong> {userProfile.address}
         </div>
       </div>
-    </Layout>
   );
 };
 
