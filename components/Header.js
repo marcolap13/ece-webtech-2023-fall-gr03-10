@@ -134,7 +134,7 @@ export default function Header() {
               </span>
               <Link href="/profiles">
                 <img
-                  src={user?.profile_picture || "/LoggedIn.jpg"}
+                  src={user?.profile_picture || "https://i.ibb.co/VT79Lp7/LoggedIn.jpg"}
                   alt="Profile"
                   style={{ width: '45px', height: '45px', marginLeft: '10px', borderRadius: '50%' }}
                 />
