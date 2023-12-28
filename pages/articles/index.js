@@ -159,9 +159,11 @@ const Articles = () => {
               <p className="mb-2 flex-grow">{article.content}</p>
               {user && user.id === article.user_id && (
                 <div className="flex justify-between mt-4">
-                  <button onClick={() => startEdit(article)} className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded">
+                  <button onClick={(e) => { e.preventDefault(); startEdit(article); }} className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded">
                     Edit
                   </button>
+
+
                   <button onClick={() => deleteArticle(article.id)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
                     Delete
                   </button>
