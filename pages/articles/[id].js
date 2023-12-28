@@ -243,6 +243,12 @@ const ArticleDetails = () => {
             </p>
           </div>
         </div>
+        <div className="mb-4 some-element">
+          <div className="font-bold">By:</div>
+          <p className="px-6 py-3 border border-black text-center align-middle">
+            @{article.username || "Anonymous"}
+          </p>
+        </div>
       </div>
 
       <div className="comments-section mt-6">
@@ -260,7 +266,7 @@ const ArticleDetails = () => {
                   minute: "2-digit",
                   second: "2-digit",
                 })}{" "}
-                @ {comment.username || "Anonymous"}:
+                @{comment.username || "Anonymous"}:
               </p>
               <p>{comment.comment}</p>
 
@@ -286,8 +292,7 @@ const ArticleDetails = () => {
                             minute: "2-digit",
                             second: "2-digit",
                           })}{" "}
-                          @ {reply.username || "Anonymous"} replied to @
-                          {comment.username || "Anonymous"}:
+                          @{reply.username || "Anonymous"} replied to @{comment.username || "Anonymous"}:
                         </p>
                         <p className="text-gray-800">{reply.reply}</p>
                       </div>
