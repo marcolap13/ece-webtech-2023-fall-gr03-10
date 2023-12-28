@@ -150,20 +150,22 @@ const Articles = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-full">
         {articles.map(article => (
           <Link href={`/articles/${article.id}`} key={article.id}>
-            <div className="border p-4 rounded transition duration-300 hover:bg-gray-200 rounded-lg h-full flex flex-col"
-              style={Layoutstyle}>
+            <div className="border p-4 rounded transition duration-300 hover:bg-gray-200 rounded-lg h-full flex flex-col" style={Layoutstyle}>
               <h2 className="text-xl font-semibold mb-2 cursor-pointer hover:underline">{article.title}</h2>
-              {article.picture_url && (
-                <img src={article.picture_url} alt={article.title} className="w-80 h-48 object-cover mb-2 rounded" />
-              )}
+              <div className="flex justify-center items-center h-48 mb-2 rounded" style={Layoutstyle}>
+                {article.picture_url && (
+                  <img src={article.picture_url} alt={article.title} className="w-80 h-48 object-cover mb-2 rounded" />
+                )}
+              </div>
               <p className="mb-2 flex-grow">{article.content}</p>
+              <div className="mt-auto text-center">
+                <span className="text-gray-500">By: @{article.username || "Anonymous"}</span>
+              </div>
               {user && user.id === article.user_id && (
-                <div className="flex justify-between mt-4">
+                <div className="flex justify-between mt-2">
                   <button onClick={(e) => { e.preventDefault(); startEdit(article); }} className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded">
                     Edit
                   </button>
-
-
                   <button onClick={() => deleteArticle(article.id)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
                     Delete
                   </button>
@@ -173,6 +175,7 @@ const Articles = () => {
           </Link>
         ))}
       </div>
+
     </div>
   );
 };
