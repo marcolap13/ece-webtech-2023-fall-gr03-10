@@ -88,7 +88,7 @@ const UserDetails = () => {
   return (
     <div className="p-20 justify-center items-center">
       <h1 className="text-2xl text-center font-bold mb-4 ">User Details</h1>
-      <div className="max-w-lg mx-auto my-4 p-4 border rounded shadow-sm rounded-lg"style={profilestyle}>
+      <div className="max-w-lg mx-auto my-4 p-4 border rounded shadow-sm rounded-lg"style={dashboardstyle}>
         {Object.keys(userDetails).length > 0 && (
           <table className="w-full">
             <tbody>
