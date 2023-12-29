@@ -62,3 +62,7 @@ body, footer, header, div, p {
 [data-theme='dark'] .table-with-border {
   border-color: var(--table-border-color-dark);
 }
+
+.react-quill-editor {
+  background-color: white;
+}
