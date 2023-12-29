@@ -36,8 +36,8 @@ const Layout = ({ children, title, description }) => {
         <main className="pt-24 py-10 flex-1 max-w-full mx-auto">
           {children}
         </main>
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 };
