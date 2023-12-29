@@ -4,6 +4,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useTheme } from "../context/ThemeContext";
 
+// ... (your imports)
+
 const Layout = ({ children, title, description }) => {
   const { theme } = useTheme();
 
@@ -17,6 +19,12 @@ const Layout = ({ children, title, description }) => {
     textAlign: "center",
   };
 
+  const backgroundImageStyle = {
+    backgroundImage: `url('/background.jpg')`,
+    backgroundSize: "cover",
+    ...(theme === 'dark' && { filter: 'brightness(90%)' }),
+  };
+
   return (
     <>
       <Head>
@@ -26,11 +34,7 @@ const Layout = ({ children, title, description }) => {
       </Head>
       <div
         className="flex flex-col min-h-screen text-center"
-        style={{
-          backgroundImage: `url(https://i.ibb.co/GQTqG8K/background.jpg)`,
-          backgroundSize: "cover",
-          ...layoutStyle
-        }}
+        style={{ ...backgroundImageStyle, ...layoutStyle }}
       >
         <Header />
         <main className="pt-24 py-10 flex-1 max-w-full mx-auto">

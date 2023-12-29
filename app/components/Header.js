@@ -195,7 +195,7 @@ export default function Header() {
               ></div>
             </div>
             <div className="max-w-12 ml-3 text-gray-700 font-medium">
-              {isDarkMode ? "Light" : "Dark"}
+              {isDarkMode ? "Dark" : "Light"}
             </div>
           </label>
         </div>
