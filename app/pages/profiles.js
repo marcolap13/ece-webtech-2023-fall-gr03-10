@@ -2,14 +2,27 @@ import React, { useEffect, useState } from "react";
 import { useUser } from "../context/UserContext";
 import { supabase } from "../utils/supabaseClients";
 import { useRouter } from "next/router";
+import { useTheme } from "../context/ThemeContext";
 
 const ProfilesPage = () => {
   const { user } = useUser();
   const [profileData, setProfileData] = useState(null);
   const router = useRouter();
+  const { theme } = useTheme();
 
   const navigateToDashboard = () => {
     router.push("/dashboard");
+  };
+
+  const profilestyle = {
+    backgroundColor:
+      theme === "dark"
+        ? "var(--background-color-dark)"
+        : "var(--background-color-light)",
+    color:
+      theme === "dark" ? "var(--text-color-dark)" : "var(--text-color-light)",
+    padding: "20px",
+    textAlign: "center",
   };
 
   useEffect(() => {
@@ -44,7 +57,7 @@ const ProfilesPage = () => {
     <div className="container mx-auto mt-10 p-4">
       <h1 className="text-4xl font-bold mb-8 text-center">User Profile</h1>
       {user ? (
-        <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+        <div className="max-w-md mx-auto p-8 rounded-lg "style={profilestyle}>
           <p className="text-xl mb-4">
             <span className="font-semibold">Username:</span> {user.username}
           </p>

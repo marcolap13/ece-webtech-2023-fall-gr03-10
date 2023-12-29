@@ -1,17 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { useUser } from '../context/UserContext';
 import { supabase } from '../utils/supabaseClients';
+import { useTheme } from "../context/ThemeContext";
 
 const UserDetails = () => {
   const [userDetails, setUserDetails] = useState({});
   const [showForm, setShowForm] = useState(false);
   const { user } = useUser();
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (user) {
       fetchUserDetails();
     }
   }, [user]);
+
+  const dashboardstyle = {
+    backgroundColor:
+      theme === "dark"
+        ? "var(--background-color-dark)"
+        : "var(--background-color-light)",
+    color:
+      theme === "dark" ? "var(--text-color-dark)" : "var(--text-color-light)",
+    padding: "20px",
+    textAlign: "center",
+  };
 
   const fetchUserDetails = async () => {
     try {
@@ -75,7 +88,7 @@ const UserDetails = () => {
   return (
     <div className="p-20 justify-center items-center">
       <h1 className="text-2xl text-center font-bold mb-4 ">User Details</h1>
-      <div className="max-w-lg mx-auto my-4 p-4 border rounded shadow-sm bg-white bg-opacity-70 shadow-lg rounded-lg">
+      <div className="max-w-lg mx-auto my-4 p-4 border rounded shadow-sm rounded-lg"style={profilestyle}>
         {Object.keys(userDetails).length > 0 && (
           <table className="w-full">
             <tbody>
