@@ -1,10 +1,10 @@
 import React from "react";
-import { useTheme } from "../context/ThemeContext";
 import Link from "next/link";
+import { useTheme } from '../context/ThemeContext';
 
 export default function Page() {
   const { theme } = useTheme();
-
+ 
   const Layoutstyle = {
     backgroundColor:
       theme === "dark"
@@ -69,6 +69,8 @@ export default function Page() {
           </p>
         </div>
       </div>
+
+      
     </div>
   );
 }
