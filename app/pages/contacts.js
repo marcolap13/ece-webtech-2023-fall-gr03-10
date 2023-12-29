@@ -32,7 +32,7 @@ export default function Page() {
 
   return (
     <div className="p-20">
-      <div className="p-20  flex flex-col justify-center items-center"
+      <div className="p-20  flex flex-col justify-center items-center rounded-lg"
         style={Layoutstyle}>
         <h1 className="wt-title">Contact us</h1>
 
