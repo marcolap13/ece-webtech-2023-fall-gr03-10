@@ -3,6 +3,12 @@ import { useRouter } from "next/router";
 import { supabase } from "../../utils/supabaseClients";
 import { useUser } from "../../context/UserContext";
 import { useTheme } from "../../context/ThemeContext";
+import dynamic from 'next/dynamic';
+
+const ReactQuill = dynamic(() => import('react-quill'), {
+  ssr: false,
+});
+
 
 const ArticleDetails = () => {
   const { theme } = useTheme();
@@ -269,7 +275,7 @@ const ArticleDetails = () => {
                 })}{" "}
                 @{comment.username || "Anonymous"}:
               </p>
-              <p>{comment.comment}</p>
+              <div className="mb-2 flex-grow" dangerouslySetInnerHTML={{ __html: comment.comment }}></div>
 
               {user && (
                 <>
@@ -295,7 +301,7 @@ const ArticleDetails = () => {
                           })}{" "}
                           @{reply.username || "Anonymous"} replied to @{comment.username || "Anonymous"}:
                         </p>
-                        <p className="text-gray-800">{reply.reply}</p>
+                        <div className="mb-2 flex-grow" dangerouslySetInnerHTML={{ __html: reply.reply }}></div>
                       </div>
                     ))}
                 </>
@@ -303,12 +309,10 @@ const ArticleDetails = () => {
 
               {user && (
                 <div className="ml-4 mt-2">
-                  <input
-                    type="text"
+                  <ReactQuill
+                    theme="snow"
                     value={replies[comment.id] || ""}
-                    onChange={(e) =>
-                      setReplies({ ...replies, [comment.id]: e.target.value })
-                    }
+                    onChange={(value) => setReplies({ ...replies, [comment.id]: value })}
                     placeholder="Write a reply..."
                     className="w-full border p-2 rounded"
                   />
@@ -325,11 +329,12 @@ const ArticleDetails = () => {
         ))}
         {user ? (
           <div>
-            <textarea
-              className="w-full border p-2 rounded mt-4"
+            <ReactQuill
+              theme="snow"
               value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
+              onChange={(value) => setNewComment(value)}
               placeholder="Add a comment"
+              className="w-full border p-2 rounded mt-4"
             />
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3"
@@ -347,5 +352,4 @@ const ArticleDetails = () => {
     </div>
   );
 };
-
 export default ArticleDetails;

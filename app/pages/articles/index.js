@@ -1,11 +1,9 @@
-// pages/articles.js
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { supabase } from '../../utils/supabaseClients';
 import { useUser } from '/context/UserContext';
 import Link from 'next/link';
 import { useTheme } from "../../context/ThemeContext";
-
 
 
 const ReactQuill = dynamic(() => import('react-quill'), {
@@ -142,11 +140,11 @@ const Articles = () => {
         <div className="max-w-lg mx-auto my-4 p-4 border rounded shadow-sm">
           <input className="w-full p-2 border rounded my-2" type="text" name="title" placeholder="Title" value={articleForm.title} onChange={handleInputChange} />
           <label htmlFor="content-editor" className="block text-lg font-bold text-gray-700 mb-2">
-  Content
-</label>
+            Content
+          </label>
 
           <ReactQuill
-            id="content-editor" 
+            id="content-editor"
             theme="snow"
             value={articleForm.content}
             onChange={(content) => setArticleForm({ ...articleForm, content })}
