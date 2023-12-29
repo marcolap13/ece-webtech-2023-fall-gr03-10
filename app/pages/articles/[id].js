@@ -205,8 +205,9 @@ const ArticleDetails = () => {
         <div className="overflow-x-auto">
           <div className="mb-4">
             <div className="font-bold">Content:</div>
-            <p className="px-6 py-3 border border-black">{article.content}</p>
+            <div className="px-6 py-3 border border-black" dangerouslySetInnerHTML={{ __html: article.content }} />
           </div>
+
 
           <div className="mb-4 some-element">
             <div className="font-bold">Price:</div>

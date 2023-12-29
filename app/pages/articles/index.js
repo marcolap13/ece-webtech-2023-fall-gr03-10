@@ -1,9 +1,19 @@
 // pages/articles.js
 import React, { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { supabase } from '../../utils/supabaseClients';
 import { useUser } from '/context/UserContext';
-import Link from 'next/link'; // Importez Link
+import Link from 'next/link';
 import { useTheme } from "../../context/ThemeContext";
+
+
+
+const ReactQuill = dynamic(() => import('react-quill'), {
+  ssr: false,
+  loading: () => <p>Loading...</p>,
+});
+
+import 'react-quill/dist/quill.snow.css';
 
 const Articles = () => {
   const { theme } = useTheme();
@@ -43,13 +53,12 @@ const Articles = () => {
   };
 
   const submitArticle = async () => {
-    // Préparer les données pour la requête
     let requestData = {
       ...articleForm,
-      user_id: user.id // Ajouter l'ID de l'utilisateur
+      user_id: user.id
     };
     if (!requestData.id) {
-      delete requestData.id; // Supprimer l'id pour les nouveaux articles
+      delete requestData.id;
     }
 
     const { data, error } = requestData.id
@@ -59,9 +68,7 @@ const Articles = () => {
     if (error) {
       console.error('Error:', error);
       alert('An error occurred while processing your request.');
-
     } else {
-      //setArticles(articleForm.id ? articles.map(a => a.id === data[0].id ? data[0] : a) : [...articles, data[0]]);
       setArticleForm({
         id: null,
         title: '',
@@ -75,7 +82,6 @@ const Articles = () => {
       });
       setShowForm(false);
       alert('Article processed successfully!');
-
       location.reload();
     }
   };
@@ -125,9 +131,8 @@ const Articles = () => {
               category: '',
               published: true,
               publish_date: new Date().toISOString(),
-            }); setShowForm(!showForm); console.log(user);
+            }); setShowForm(!showForm);
           }}
-
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4"
         >
           {showForm ? 'Hide Form' : 'Create New Article'}
@@ -136,7 +141,18 @@ const Articles = () => {
       {user && showForm && (
         <div className="max-w-lg mx-auto my-4 p-4 border rounded shadow-sm">
           <input className="w-full p-2 border rounded my-2" type="text" name="title" placeholder="Title" value={articleForm.title} onChange={handleInputChange} />
-          <textarea className="w-full p-2 border rounded my-2" name="content" placeholder="Content" value={articleForm.content} onChange={handleInputChange}></textarea>
+          <label htmlFor="content-editor" className="block text-lg font-bold text-gray-700 mb-2">
+  Content
+</label>
+
+          <ReactQuill
+            id="content-editor" 
+            theme="snow"
+            value={articleForm.content}
+            onChange={(content) => setArticleForm({ ...articleForm, content })}
+            className="react-quill-editor"
+          />
+
           <input className="w-full p-2 border rounded my-2" type="text" name="picture_url" placeholder="Picture URL" value={articleForm.picture_url} onChange={handleInputChange} />
           <input className="w-full p-2 border rounded my-2" type="number" name="price" placeholder="Price" value={articleForm.price} onChange={handleInputChange} />
           <input className="w-full p-2 border rounded my-2" type="text" name="location" placeholder="Location" value={articleForm.location} onChange={handleInputChange} />
@@ -157,7 +173,7 @@ const Articles = () => {
                   <img src={article.picture_url} alt={article.title} className="w-80 h-48 object-cover mb-2 rounded" />
                 )}
               </div>
-              <p className="mb-2 flex-grow">{article.content}</p>
+              <div className="mb-2 flex-grow" dangerouslySetInnerHTML={{ __html: article.content }}></div>
               <div className="mt-auto text-center">
                 <span className="text-gray-500">By: @{article.username || "Anonymous"}</span>
               </div>
@@ -175,7 +191,6 @@ const Articles = () => {
           </Link>
         ))}
       </div>
-
     </div>
   );
 };
