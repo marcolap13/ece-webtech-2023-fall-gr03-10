@@ -2,7 +2,7 @@
 # Blogging application - ECE Webtech project
 
 ### Overview
-The ECE Webtech project, specifically the repository at *ece-webtech-2023-fall-gr03-10*, is a comprehensive educational project aimed at creating a web-based blogging application named [**ALIBOBO**](https://ece-webtech-2023-fall-gr03-10-beta.vercel.app/). This project encompasses a range of web technologies and is designed to provide a practical learning experience in web development.
+The ECE Webtech project, specifically the repository at *ece-webtech-2023-fall-gr03-10*, is a comprehensive educational project aimed at creating a web-based blogging application named [**ALIBOBO**](https://ece-webtech-2023-fall-gr03-10-marcolap13s-projects.vercel.app/). This project encompasses a range of web technologies and is designed to provide a practical learning experience in web development.
 
 ### Pre-requisites
 Before diving into the project, it's essential to have a basic understanding of the following technologies and concepts:
@@ -44,7 +44,7 @@ npm start
 ```
 
 ### Accessing ALIBOBO
-However, instead of starting the project locally, you can conveniently access our site directly via the following link: [https://ece-webtech-2023-fall-gr03-10-beta.vercel.app/](https://ece-webtech-2023-fall-gr03-10-beta.vercel.app/).
+However, instead of starting the project locally, you can conveniently access our site directly via the following link: [https://ece-webtech-2023-fall-gr03-10-marcolap13s-projects.vercel.app/](https://ece-webtech-2023-fall-gr03-10-marcolap13s-projects.vercel.app/).
 
 Feel free to explore the various features and functionalities of ALIBOBO using the provided test credentials:
 
